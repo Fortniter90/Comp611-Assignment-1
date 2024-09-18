@@ -1,6 +1,4 @@
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 import static java.lang.System.exit;
 
@@ -43,7 +41,7 @@ public class FindBestExchange {
                     System.out.println("Invalid Input: Please enter a valid integer");
                     exit(0);
                 }
-            } else if (response.equalsIgnoreCase("n")) {                // Exits If User Doesn't Want To Find Best Exchange Rate
+            } else if (response.equalsIgnoreCase("n")) { // Exits If User Doesn't Want To Find Best Exchange Rate
                 System.out.println("Thanks For Using My Program");
                 exit(0);
             }else{
@@ -79,20 +77,41 @@ public class FindBestExchange {
             }
         }
 
-        String[] labels = CurrencyLabels.getLabels(); // Gets The Labels From CurrencyLabels With The getLabels Method
-        //Prints The Starting Label And End Label
-        System.out.println("Best exchange rate from " + labels[s] + " to " + labels[e]);
-        printPath(p, s, e); // Prints Path Of Best Exchange
-        System.out.println();
-        // Prints The Currency Exchange Rate
-        System.out.println("1.0000 " + labels[s] + " = " + String.format("%.4f", d[e]) + " " + labels[e]);
-        System.out.println("Negative Result Means There Are Arbitrage Opportunities");
+        boolean negativeWeight = false;
+        // Check For Negative Weight Cycles
+        for (int u = 0; u < N; u++) {
+            for (int v = 0; v < N; v++) {
+                if (d[u] + graph[u][v] < d[v]) {
+                    // If There Is A Negative Weight It Will Print The Direct Edge To The Node (Standard Exchange Rate)
+                    if(!negativeWeight) {
+                        negativeWeight = true;
+                        double exchangeRate = Math.exp(-d[e]); // Convert logarithmic distance to actual profit
+                        System.out.println();
+                        String[] labels = CurrencyLabels.getLabels(); // Gets The Labels From CurrencyLabels With The getLabels Method
+                        System.out.println("Best exchange rate from " + labels[s] + " to " + labels[e]);
+                        System.out.println(labels[s] + " = " + labels[e]);
+                        System.out.println("1.0000 " + labels[s] + " = " + String.format("%.4f", 1 / exchangeRate) + " " + labels[e]);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(!negativeWeight) {
+            double exchangeRate = Math.exp(-d[e]); // Convert logarithmic distance to actual profit
+            String[] labels = CurrencyLabels.getLabels(); // Gets The Labels From CurrencyLabels With The getLabels Method
+            //Prints The Starting Label And End Label
+            System.out.println("Best exchange rate from " + labels[s] + " to " + labels[e]);
+            printPath(p, s, e); // Prints Path Of Best Exchange
+            System.out.println();
+            // Prints The Currency Exchange Rate
+            System.out.println("1.0000 " + labels[s] + " = " + String.format("%.4f", exchangeRate) + " " + labels[e]);
+        }
     }
-
     private static void printPath(int[] p, int s, int e) {
-        String[] labels = CurrencyLabels.getLabels(); // Gets The Labels From CurrencyLabels With The getLabels Method
+        String[] labels = CurrencyLabels.getLabels(); // Gets The Labels From CurrencyLabels With The GetLabels Method
 
-        //Base Case: Start Node Equal To End Node, Prints Label And Returns
+        // Base Case: Start Node Equal To End Node, Prints Label And Returns
         if (s == e) {
             System.out.print(labels[s]);
             return;
@@ -100,7 +119,7 @@ public class FindBestExchange {
 
         // Base Case: No Path Exists, Prints Error Message
         if (p[e] == -1) {
-            System.out.println("No path exists");
+            System.out.println("No Path Exists");
             return;
         }
 
