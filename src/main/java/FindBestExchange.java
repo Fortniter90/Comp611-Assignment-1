@@ -18,8 +18,10 @@ public class FindBestExchange {
         // Checks If Arbitrage Was Checked For
         if (!checkedArb) {
             System.out.println("Would You Like To Find The Best Exchange Rate For Certain Currencies (y|n)");
+            String response = scanner.nextLine(); // Read user input
+
             // Checks If User Wants To Find The Best Exchange Rates
-            if (scanner.nextLine().equals("y") || scanner.nextLine().equals("Y")) {
+            if (response.equalsIgnoreCase("y")) {
                 for (int i = 0; i < graph.length; i++) {
                     // Prints All Currencies That Were Used In The Graph Using The getLabels Method
                     // (i + 1) So That It Makes Sense To The User As Currency 0 Becomes Currency 1
@@ -41,9 +43,11 @@ public class FindBestExchange {
                     System.out.println("Invalid Input: Please enter a valid integer");
                     exit(0);
                 }
-            } else if (scanner.nextLine().equals("n") || scanner.nextLine().equals("N")) {
-                // Exits If User Doesn't Want To Find Best Exchange Rate
+            } else if (response.equalsIgnoreCase("n")) {                // Exits If User Doesn't Want To Find Best Exchange Rate
                 System.out.println("Thanks For Using My Program");
+                exit(0);
+            }else{
+                System.out.println("Invalid Input: Please enter y or n");
                 exit(0);
             }
         }

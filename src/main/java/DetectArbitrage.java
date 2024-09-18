@@ -33,7 +33,8 @@ public class DetectArbitrage {
                 if (d[u] + graph[u][v] < d[v]) {
                     // If There Is A Negative Weight It Will Print The Arbitrage
                     System.out.println("Arbitrage Opportunity Detected:");
-                    printArbSequence(p, s, d[u]);
+                    double profit = Math.exp(-d[u]);  // Convert logarithmic distance to actual profit
+                    printArbSequence(p, s, profit);
                     return true;
                 }
             }
@@ -41,7 +42,7 @@ public class DetectArbitrage {
         return false;
     }
 
-    public static void printArbSequence(int[] p, int s, double d) {
+    public static void printArbSequence(int[] p, int s, double profit) {
         String[] labels = CurrencyLabels.getLabels(); // Gets The Static Labels From The CurrencyLabels Object
         boolean[] visited = new boolean[p.length]; // Tracks vertices have been visited
         int current = s; // Initialises The Current Node The Source Node
@@ -65,6 +66,6 @@ public class DetectArbitrage {
         System.out.println("->" + labels[cycle]); // Print Label OF Node At End Of Cycle
 
         // Print Cycle and Profit/Return
-        System.out.println((cycle + 1) + " Cycle Profit/Return: " + "x" + (d * -1 + 1));
+        System.out.println((cycle + 1) + " Cycle Profit/Return: x" + profit);
     }
 }
