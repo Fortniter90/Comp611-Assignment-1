@@ -52,10 +52,10 @@ public class DemoCases {
 
         // CLI For Demo Cases
         System.out.println("\nDemoCases");
-        System.out.println("1. DemoCase1 (Arbitrage Excepted)");
-        System.out.println("2. DemoCase2 (No Arbitrage Excepted)");
-        System.out.println("3. DemoCase3 (No Arbitrage Excepted)");
-        System.out.println("4. DemoCase4 (Arbitrage Excepted)");
+        System.out.println("1. DemoCase1 (Arbitrage Expected)");
+        System.out.println("2. DemoCase2 (No Arbitrage Expected)");
+        System.out.println("3. DemoCase3 (No Arbitrage Expected)");
+        System.out.println("4. DemoCase4 (Arbitrage Expected)");
         boolean arbitrageFound = false; // Tracks If Arbitrage Has Been Found
         Scanner scanner = new Scanner(System.in);
         try {

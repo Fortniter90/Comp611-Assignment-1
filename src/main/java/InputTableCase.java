@@ -69,6 +69,7 @@ public class InputTableCase {
         } catch (InputMismatchException E) {
             // Handles Invalid Labels
             System.out.println("Error That Label Is Not Accepted Please Try Again");
+            exit(0);
         }
 
         if(isReal){

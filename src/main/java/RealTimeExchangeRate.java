@@ -3,6 +3,8 @@ import java.io.*;
 import java.net.*;
 import com.google.gson.*;
 
+import static java.lang.System.exit;
+
 
 public class RealTimeExchangeRate {
     public static HttpURLConnection RealTimeAPIConnect(String url_str) throws IOException {
@@ -54,14 +56,17 @@ public class RealTimeExchangeRate {
                 } catch (NullPointerException E) {
                     // If The Currency Is Not Found It Prints An Error Message
                     System.out.println("Error: Currency Is Either Not Real Or Not Available In The API");
+                    exit(0);
                 }
             }else {
                 // Print An Error Message If The Request Was Not Successful
                 System.out.println("Error in response: " + request.getResponseCode());
+                exit(0);
             }
         } catch (IOException E) {
             // Handles IO Exceptions
             System.out.println("Error: " + E.getMessage());
+            exit(0);
         }
     }
 
