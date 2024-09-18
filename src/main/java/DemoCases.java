@@ -7,7 +7,7 @@ public class DemoCases {
     // NZD, GBP, JPY, AUD, CAD, CHF, HKD
     public static void demoCases() {
         double[][] demoGraph1 = {
-                // Arbitrage Excepted
+                // Arbitrage Expected
                 // NZD, GBP, JPY, AUD, CAD
                 {1.0000, 1.2500, 1.5000, 135.0000, 1.3500},
                 {0.8000, 1.0000, 1.2000, 108.0000, 1.0800},
@@ -17,6 +17,7 @@ public class DemoCases {
         };
 
         double[][] demoGraph2 = {
+                // Arbitrage Not Expected
                 // NZD, GBP, JPY, AUD, CAD
                 {1, 1.1, 1.2, 110, 1.3},
                 {0.0, 1, 1.09, 100, 1.18},
@@ -26,6 +27,7 @@ public class DemoCases {
         };
 
         double[][] demoGraph3 = {
+                // Arbitrage Not Expected
                 // NZD, GBP, JPY, AUD, CAD, CHF, HKD
                 {0.000000000000, 0.917431192661, 0.782608695652, 145.652173913043, 1.347826086957, 1.521739130435, 0.869565217391},
                 {0.000000000000, 0.000000000000, 0.853333333333, 158.771929824561, 1.469230769231, 1.658974358974, 0.947692307692},
@@ -37,6 +39,7 @@ public class DemoCases {
         };
 
         double[][] demoGraph4 = {
+                // Arbitrage Expected
                 // NZD, GBP, JPY, AUD, CAD, CHF, HKD
                 {1.000000000000, 0.917431192661, 0.782608695652, 145.652173913043, 1.347826086957, 1.521739130435, 0.869565217391},
                 {1.090000000000, 1.000000000000, 0.853333333333, 158.771929824561, 1.469230769231, 1.658974358974, 0.947692307692},
